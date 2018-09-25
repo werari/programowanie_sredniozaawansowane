@@ -50,8 +50,18 @@ public class TodoConsoleView {
         return scanner.nextLine();
     }
     public void displayError (String message){
+        System.out.println();
         System.out.println("Error");
         System.out.println(message);
         System.out.println("Error");
+        System.out.println();
+    }
+
+    public void displaySuccesss(String message) {
+        System.out.println();
+        System.out.println("Success");
+        System.out.println(message);
+        System.out.println("Success");
+        System.out.println();
     }
 }

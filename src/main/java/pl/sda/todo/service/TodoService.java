@@ -28,7 +28,7 @@ public class TodoService {
 
     public TodoUser login(String name, String password) {
         if (!todoUserRepository.exists(name)) {
-            throw new TodoUserDoesNotExistsException("User with name " + name + " already exists");
+            throw new TodoUserDoesNotExistsException("User with name \"" + name + "\" does not exists");
         }
         TodoUser user = todoUserRepository.findByName(name);
         if (!user.getPassword().equals(password)) {
