@@ -20,6 +20,7 @@ public class TodoApplication {
     private TodoConsoleView todoConsoleView;
     private TodoUser currentUser;
 
+
     public static void main(String[] args) {
         TodoRepository todoRepository = new InMemoryTodoRepository();
         TodoUserRepository todoUserRepository = new InMemoryTodoUserRepository(
