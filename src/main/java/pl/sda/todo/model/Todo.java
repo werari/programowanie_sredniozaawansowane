@@ -23,7 +23,7 @@ public class Todo {
         this.description = "";
         this.creationDate = Instant.now();
         this.owner = null;
-        this.todoStatus = TodoStatus.New;
+        this.todoStatus = TodoStatus.NEW;
         this.id = UUID.randomUUID().toString();
     }
 }

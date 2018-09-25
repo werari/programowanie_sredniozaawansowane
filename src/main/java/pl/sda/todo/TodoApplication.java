@@ -36,7 +36,7 @@ public class TodoApplication {
     }
 
     public void start() {
-        Boolean flag= true;
+        Boolean flag = true;
 
         do {
             Integer menuOption = todoConsoleView.menu();
@@ -51,18 +51,19 @@ public class TodoApplication {
                     addNewTodo();
                     break;
                 case 4:
+                    showTodoList();
                     break;
                 case 0:
                 default:
                     todoConsoleView.exit();
-                    flag=false;
+                    flag = false;
                     break;
             }
         } while (flag);
     }
 
 
-    private void register(){
+    private void register() {
 
         String name = todoConsoleView.registerName();
         String password = todoConsoleView.registerPassword();
@@ -76,6 +77,13 @@ public class TodoApplication {
         }
 
     }
+
+    private void showTodoList() {
+        Integer option = todoConsoleView.showTodoListWithOptions(todoService.findAllTodo());
+        System.out.println("Wybrano opcje " + option);
+
+    }
+
     private void login() {
         this.currentUser = null;
         String name = todoConsoleView.logInName();
@@ -85,8 +93,8 @@ public class TodoApplication {
         } catch (TodoUserDoesNotExistsException | InvalidPasswordException e) {
             todoConsoleView.displayError(e.getMessage());
         }
-        if(this.currentUser!=null){
-            todoConsoleView.displaySuccesss("Uzytkownik o nicku \""+ name + "\" zostal zalogowany");
+        if (this.currentUser != null) {
+            todoConsoleView.displaySuccesss("Uzytkownik o nicku \"" + name + "\" zostal zalogowany");
         }
     }
 
@@ -94,13 +102,14 @@ public class TodoApplication {
         if (currentUser == null) {
             login();
         }
+        if (currentUser != null) {
 
-        String todoName = todoConsoleView.createNewTodoName();
-        String todoDescription = todoConsoleView.createNewTodoDescription();
-        Todo todo = new Todo(todoName, this.currentUser);
-        todo.setDescription(todoDescription);
+            String todoName = todoConsoleView.createNewTodoName();
+            String todoDescription = todoConsoleView.createNewTodoDescription();
+            Todo todo = new Todo(todoName, this.currentUser);
+            todo.setDescription(todoDescription);
 
-        todoService.save(todo);
+            todoService.save(todo);
+        }
     }
-
 }
