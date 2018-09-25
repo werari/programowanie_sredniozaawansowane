@@ -1,4 +1,4 @@
-package com.sda.todo.model;
+package pl.sda.todo.model;
 
 import lombok.Getter;
 import lombok.Setter;

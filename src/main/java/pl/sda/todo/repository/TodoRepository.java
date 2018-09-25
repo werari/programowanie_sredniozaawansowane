@@ -1,6 +1,6 @@
-package com.sda.todo.repository;
+package pl.sda.todo.repository;
 
-import com.sda.todo.model.Todo;
+import pl.sda.todo.model.Todo;
 
 import java.util.List;
 import java.util.Optional;

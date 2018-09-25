@@ -1,4 +1,4 @@
-package com.sda.todo.views;
+package pl.sda.todo.views;
 
 import java.util.Scanner;
 

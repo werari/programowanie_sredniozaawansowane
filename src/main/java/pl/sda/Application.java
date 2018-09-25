@@ -1,4 +1,4 @@
-package com.sda;
+package pl.sda;
 
 import java.util.Optional;
 

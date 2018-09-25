@@ -1,7 +1,7 @@
-package com.sda.todo.repository.memory;
+package pl.sda.todo.repository.memory;
 
-import com.sda.todo.model.TodoUser;
-import com.sda.todo.repository.TodoUserRepository;
+import pl.sda.todo.model.TodoUser;
+import pl.sda.todo.repository.TodoUserRepository;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;

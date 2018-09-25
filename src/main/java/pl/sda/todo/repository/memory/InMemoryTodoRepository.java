@@ -1,7 +1,7 @@
-package com.sda.todo.repository.memory;
+package pl.sda.todo.repository.memory;
 
-import com.sda.todo.model.Todo;
-import com.sda.todo.repository.TodoRepository;
+import pl.sda.todo.model.Todo;
+import pl.sda.todo.repository.TodoRepository;
 
 import java.util.ArrayList;
 import java.util.List;

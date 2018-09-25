@@ -1,13 +1,13 @@
-package com.sda.todo;
+package pl.sda.todo;
 
-import com.sda.todo.model.Todo;
-import com.sda.todo.model.TodoUser;
-import com.sda.todo.repository.TodoRepository;
-import com.sda.todo.repository.TodoUserRepository;
-import com.sda.todo.repository.memory.InMemoryTodoRepository;
-import com.sda.todo.repository.memory.InMemoryTodoUserRepository;
-import com.sda.todo.service.TodoService;
-import com.sda.todo.views.TodoConsoleView;
+import pl.sda.todo.model.Todo;
+import pl.sda.todo.model.TodoUser;
+import pl.sda.todo.repository.TodoRepository;
+import pl.sda.todo.repository.TodoUserRepository;
+import pl.sda.todo.repository.memory.InMemoryTodoRepository;
+import pl.sda.todo.repository.memory.InMemoryTodoUserRepository;
+import pl.sda.todo.service.TodoService;
+import pl.sda.todo.views.TodoConsoleView;
 import lombok.AllArgsConstructor;
 
 import java.util.Arrays;

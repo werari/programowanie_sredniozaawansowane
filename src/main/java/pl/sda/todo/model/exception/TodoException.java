@@ -1,4 +1,4 @@
-package com.sda.todo.model.exception;
+package pl.sda.todo.model.exception;
 
 public class TodoException extends RuntimeException {
     public TodoException(String message) {

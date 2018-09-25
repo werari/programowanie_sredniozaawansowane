@@ -1,6 +1,6 @@
-package com.sda.todo.repository;
+package pl.sda.todo.repository;
 
-import com.sda.todo.model.TodoUser;
+import pl.sda.todo.model.TodoUser;
 
 public interface TodoUserRepository {
     boolean save(TodoUser user);

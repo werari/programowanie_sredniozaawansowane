@@ -1,11 +1,11 @@
-package com.sda.todo.service;
+package pl.sda.todo.service;
 
-import com.sda.todo.model.Todo;
-import com.sda.todo.model.TodoUser;
-import com.sda.todo.model.exception.InvalidPasswordException;
-import com.sda.todo.model.exception.TodoUserAlreadyExistsException;
-import com.sda.todo.repository.TodoRepository;
-import com.sda.todo.repository.TodoUserRepository;
+import pl.sda.todo.model.Todo;
+import pl.sda.todo.model.TodoUser;
+import pl.sda.todo.model.exception.InvalidPasswordException;
+import pl.sda.todo.model.exception.TodoUserAlreadyExistsException;
+import pl.sda.todo.repository.TodoRepository;
+import pl.sda.todo.repository.TodoUserRepository;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
