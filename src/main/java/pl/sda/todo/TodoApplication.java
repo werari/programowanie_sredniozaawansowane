@@ -36,6 +36,8 @@ public class TodoApplication {
     }
 
     public void start() {
+        Boolean flag= true;
+
         do {
             Integer menuOption = todoConsoleView.menu();
             switch (menuOption) {
@@ -50,10 +52,13 @@ public class TodoApplication {
                     break;
                 case 4:
                     break;
+                case 0:
                 default:
+                    todoConsoleView.exit();
+                    flag=false;
                     break;
             }
-        } while (true);
+        } while (flag);
     }
 
 
@@ -97,4 +102,5 @@ public class TodoApplication {
 
         todoService.save(todo);
     }
+
 }
