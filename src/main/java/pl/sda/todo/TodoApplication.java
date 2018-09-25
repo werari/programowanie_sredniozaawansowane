@@ -2,6 +2,8 @@ package pl.sda.todo;
 
 import pl.sda.todo.model.Todo;
 import pl.sda.todo.model.TodoUser;
+import pl.sda.todo.model.exception.InvalidPasswordException;
+import pl.sda.todo.model.exception.TodoUserDoesNotExistsException;
 import pl.sda.todo.repository.TodoRepository;
 import pl.sda.todo.repository.TodoUserRepository;
 import pl.sda.todo.repository.memory.InMemoryTodoRepository;
@@ -40,6 +42,7 @@ public class TodoApplication {
             Integer menuOption = todoConsoleView.menu();
             switch (menuOption) {
                 case 1:
+                    login();
                     break;
                 case 2:
                     break;
@@ -54,11 +57,20 @@ public class TodoApplication {
         } while (true);
     }
 
+    private void login() {
+        this.currentUser = null;
+        String name = todoConsoleView.logInName();
+        String password = todoConsoleView.logInPassword();
+        try {
+            this.currentUser = todoService.login(name, password);
+        } catch (TodoUserDoesNotExistsException | InvalidPasswordException e) {
+            todoConsoleView.displayError(e.getMessage());
+        }
+    }
+
     private void addNewTodo() {
         if (currentUser == null) {
-            String name = todoConsoleView.logInName();
-            String password = todoConsoleView.logInPassword();
-            this.currentUser = todoService.login(name, password);
+            login();
         }
 
         String todoName = todoConsoleView.createNewTodoName();

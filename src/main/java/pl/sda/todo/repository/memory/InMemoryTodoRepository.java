@@ -30,6 +30,7 @@ public class InMemoryTodoRepository implements TodoRepository {
 
     @Override
     public List<Todo> findAll() {
-        return new ArrayList<>(todos); //zwracac kopie listy
+
+        return new ArrayList<>(todos); //TODO kopiowanie listy!!
     }
 }

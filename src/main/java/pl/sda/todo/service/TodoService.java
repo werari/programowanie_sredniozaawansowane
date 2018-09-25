@@ -3,7 +3,7 @@ package pl.sda.todo.service;
 import pl.sda.todo.model.Todo;
 import pl.sda.todo.model.TodoUser;
 import pl.sda.todo.model.exception.InvalidPasswordException;
-import pl.sda.todo.model.exception.TodoUserAlreadyExistsException;
+import pl.sda.todo.model.exception.TodoUserDoesNotExistsException;
 import pl.sda.todo.repository.TodoRepository;
 import pl.sda.todo.repository.TodoUserRepository;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class TodoService {
 
     public TodoUser login(String name, String password) {
         if (!todoUserRepository.exists(name)) {
-            throw new TodoUserAlreadyExistsException("User with name " + name + " already exists");
+            throw new TodoUserDoesNotExistsException("User with name " + name + " already exists");
         }
         TodoUser user = todoUserRepository.findByName(name);
         if (!user.getPassword().equals(password)) {
