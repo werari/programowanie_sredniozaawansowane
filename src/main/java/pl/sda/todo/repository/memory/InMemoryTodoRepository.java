@@ -45,4 +45,9 @@ public class InMemoryTodoRepository implements TodoRepository {
 
         return new ArrayList<>(todos); //TODO kopiowanie listy!!
     }
+
+    @Override
+    public void remove(int todoIdToRemove) {
+        todos.remove(todoIdToRemove);
+    }
 }

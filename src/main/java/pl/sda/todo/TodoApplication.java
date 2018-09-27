@@ -80,17 +80,44 @@ public class TodoApplication {
 
     private void showTodoList() {
         Integer option = todoConsoleView.showTodoListWithOptions(todoService.findAllTodo());
+        String possibleId= todoConsoleView.getPossibleId();
         //System.out.println("Wybrano opcje " + option);
-        switch (option){
+        switch (option) {
             case 1:
-                showTodoDescription();
+                showTodoDescription(possibleId);
+                break;
+            case 2:
+                removeTodo(possibleId);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
                 break;
         }
     }
 
-    private void showTodoDescription() {
-        Integer todoId= todoConsoleView.getTodoId()-1;
-        Optional<Todo> todo= todoService.findTodoById(todoId);
+    private void removeTodo(String possibleId) {
+        Integer todoId;
+        todoId = extractTodoId(possibleId);
+        Optional<Todo> removedTodo= todoService.removeTodo(todoId);
+        todoConsoleView.displayTodoRemove(removedTodo);
+    }
+
+    private Integer extractTodoId(String possibleId) {
+        Integer todoId;
+        if(possibleId.length()==0){
+           todoId= todoConsoleView.getTodoId()-1;//ktos wpisał dwa po sobie
+        } else{
+            todoId= Integer.valueOf(possibleId)-1;//ktos wpisał dwa ze spacja
+        }
+        return todoId;
+    }
+
+    private void showTodoDescription(String possibleId) {
+        Integer todoId = extractTodoId(possibleId);
+        Optional<Todo> todo = todoService.findTodoById(todoId);
         todoConsoleView.showTodoListWithDetails(todo);
     }
 
