@@ -12,7 +12,7 @@ import pl.sda.todo.service.TodoService;
 import pl.sda.todo.views.TodoConsoleView;
 import lombok.AllArgsConstructor;
 
-import java.util.Arrays;
+import java.util.Optional;
 import java.util.Scanner;
 
 @AllArgsConstructor
@@ -80,8 +80,18 @@ public class TodoApplication {
 
     private void showTodoList() {
         Integer option = todoConsoleView.showTodoListWithOptions(todoService.findAllTodo());
-        System.out.println("Wybrano opcje " + option);
+        //System.out.println("Wybrano opcje " + option);
+        switch (option){
+            case 1:
+                showTodoDescription();
+                break;
+        }
+    }
 
+    private void showTodoDescription() {
+        Integer todoId= todoConsoleView.getTodoId()-1;
+        Optional<Todo> todo= todoService.findTodoById(todoId);
+        todoConsoleView.showTodoListWithDetails(todo);
     }
 
     private void login() {

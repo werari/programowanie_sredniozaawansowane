@@ -99,8 +99,26 @@ public class TodoConsoleView {
 
         Integer option = scanner.nextInt();
         scanner.nextLine();
-
-
         return option;
     }
+
+    public Integer getTodoId() {
+        System.out.println("Podaj numer zadania");
+        int todoId = scanner.nextInt();
+        scanner.nextLine();
+        return todoId;
+    }
+
+    public void showTodoListWithDetails(Optional<Todo> todo) {
+        String message = todo.map(e -> {
+            TodoUser creator = e.getCreator();
+            Optional<TodoUser> owner = Optional.ofNullable(e.getOwner());
+            return e.getName() + " (" + e.getTodoStatus().toString() + ") (" + e.getCreationDate().toString() + ")\n" +
+                    e.getDescription() + "\n" + "Tworca: " + creator.getName() + "\n" +
+                    "Przypisane: " + owner.orElse(TodoUser.unasigned()).getName();
+        }).orElse("zadanie nie istnieje");
+
+        System.out.println(message);
+    }
 }
+//
