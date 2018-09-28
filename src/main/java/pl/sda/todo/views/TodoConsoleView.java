@@ -105,10 +105,10 @@ public class TodoConsoleView {
 
     public Integer getTodoId() {
 
-            System.out.println("Podaj numer zadania");
-             int id = scanner.nextInt();
-            scanner.nextLine();
-            return id;
+        System.out.println("Podaj numer zadania");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        return id;
     }
 
     private Integer getIdFromMessage(String message) {
@@ -128,10 +128,9 @@ public class TodoConsoleView {
     }
 
 
-
     public String getPossibleId() {
         String possibleId = scanner.nextLine();
-        return possibleId.length()>0 ?
+        return possibleId.length() > 0 ?
                 possibleId.substring(1) :
                 possibleId;
     }
@@ -139,5 +138,15 @@ public class TodoConsoleView {
     public void displayTodoRemove(Optional<Todo> removedTodo) {
         System.out.println(removedTodo.map(e -> "Usunięto zadanie " + e.getName())
                 .orElse("Zadanie nie istenieje"));
+    }
+
+    public void displayAssigment(Optional<Todo> todo, TodoUser currentUser) {
+        System.out.println(todo.map(e -> "Przypisano " + currentUser.getName() + "do zadania \"" + e.getName() + "\"")
+                .orElse("Zadanie nie isteniej"));
+    }
+
+    public void displayChangeStatus(Optional<Todo> todoById) {
+        System.out.println(todoById.map(e -> "Zmieniono status zadania " + e.getName() + " na " + e.getTodoStatus())
+                .orElse("Zadanie nie istnieje"));
     }
 }
