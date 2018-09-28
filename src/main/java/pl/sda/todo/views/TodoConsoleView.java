@@ -149,4 +149,10 @@ public class TodoConsoleView {
         System.out.println(todoById.map(e -> "Zmieniono status zadania " + e.getName() + " na " + e.getTodoStatus())
                 .orElse("Zadanie nie istnieje"));
     }
+
+    public TodoStatus getStatus() {
+        System.out.println("Podaj Status (NEW, ACTIVE, CLOSED");
+        String status = scanner.nextLine();
+        return TodoStatus.valueOf(status);
+    }
 }

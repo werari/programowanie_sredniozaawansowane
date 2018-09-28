@@ -107,6 +107,12 @@ public class TodoApplication {
                 assign(command);
                 break;
             case 4:
+                String possibleIdToChangeStatus= todoConsoleView.getPossibleId();
+                Integer todoIdToChangeStatus = extractTodoId(possibleIdToChangeStatus);
+                TodoStatus status = todoConsoleView.getStatus();
+                command.addAgmugent("todoId", todoIdToChangeStatus);
+                command.addAgmugent("status", status);
+
                 changeStatus(command);
                 break;
             default:
