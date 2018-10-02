@@ -24,7 +24,7 @@ public class TodoService {
                         .getName()
                         .equalsIgnoreCase(creatorName))
                 .collect(Collectors.toList());
-
+//TODO equalsIgnoreCase- metoda pozwaljąca na omijanie rózniwcy wynikajacej z duzych i małych liter w Stringach
     }
 
 

@@ -6,7 +6,6 @@ import org.mockito.Mockito;
 import pl.sda.todo.model.Todo;
 import pl.sda.todo.model.TodoUser;
 import pl.sda.todo.repository.TodoRepository;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,9 +45,8 @@ public class TodoServiceTest {
         Todo todo1 = new Todo("Zrobic zakupy", todoUser);
         Todo todo2 = new Todo("Zrobic pranie", todoUser);
         Todo todo3 = new Todo("Kupic mleko", todoUser2);
-        Todo todo4 = new Todo("Kupic kubek", todoUser2);
+        Todo todo4 = new Todo("Kupic kubek", todoUser3);
 
         return Arrays.asList(todo1, todo2, todo3, todo4);
     }
 }
-//mockujemy todorepository i stabowanie findAll- zrobic 4 todos; w pierwszzym wynik 2, a w drugim 0
