@@ -1,4 +1,4 @@
-package pl.sda;
+package pl.sda.todo;
 
 import java.util.*;
 
