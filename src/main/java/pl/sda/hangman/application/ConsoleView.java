@@ -29,4 +29,23 @@ public class ConsoleView {
         System.out.println(phraseStatusAsString + " ("+ leftAttempts+ ")");
         return scanner.nextLine().charAt(0);
     }
+
+    public void displayWrongLetterAdded() {
+        System.out.println("Podano niepoprawna litere");
+    }
+
+    public void displayGameWon() {
+        System.out.println("Wygrana");
+        waitForAction();
+    }
+
+    private void waitForAction() {
+        System.out.println("Wcisnij enter, zbey kontynuowac");
+        scanner.nextLine();
+    }
+
+    public void displayGameLost() {
+        System.out.println("Przegana");
+        waitForAction();
+    }
 }
