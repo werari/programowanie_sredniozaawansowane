@@ -57,7 +57,7 @@ public class ConsoleView {
     }
 
     public void displayPhraseContainsForbiddenWords() {
-        System.out.println("Podana fraza zawiera zabraonione słowa");
+        System.out.println("Podana fraza zawiera zabronione słowa");
         waitForAction();
     }
 
