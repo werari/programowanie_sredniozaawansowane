@@ -11,6 +11,15 @@ public class ForbiddenWordsValidator {
 
 
     public boolean validate (String phrase){
-        return true;
+        String preparePhrase = preparePhrase(phrase);
+        return forbiddenWordsRepository.findAll()
+                .stream()
+                .map(e-> preparePhrase(e))
+                .noneMatch(e -> preparePhrase.contains(e));
+    }
+
+    private String preparePhrase(String phrase){
+        return phrase.replaceAll(" ", "")
+                .toLowerCase();
     }
 }

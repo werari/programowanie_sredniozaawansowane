@@ -1,6 +1,7 @@
 package pl.sda.hangman.domain;
 
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import pl.sda.hangman.domain.exceptions.ForbiddenWordsInPhraseException;
 import pl.sda.hangman.domain.exceptions.PhraseAlreadyExistExcpetion;
@@ -17,6 +18,8 @@ public class PhraseServiceTest {
         PhraseService phraseService = new PhraseService(phraseRepository,forbiddenWordsValidator );
         //when
         phraseService.addPhrase("phrase with forbiddenWord");
+        //then
+        Mockito.verify(phraseRepository, Mockito.times(1)).save("phrase with forbiddenWord");
 
     }
     @Test (expected = PhraseAlreadyExistExcpetion.class)
