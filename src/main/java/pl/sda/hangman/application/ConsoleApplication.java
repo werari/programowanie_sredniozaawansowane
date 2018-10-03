@@ -28,7 +28,7 @@ public class ConsoleApplication {
                     startGame();
                     break;
                 case 2:
-                    System.out.println("Tutaj będa wyniki");
+                    //addPhrase();
                     break;
                 case 0:
                     System.out.println("Tutaj koniec");
@@ -38,6 +38,10 @@ public class ConsoleApplication {
             }
         }
     }
+
+//    private void addPhrase() {
+//        String phrase= consoleView.addPhraseMessage();
+//    }
 
     private void startGame() {
         Game game = gameFactory.createGame();
