@@ -9,10 +9,11 @@ public class User {
     private String firstName;
     private String lastName;
     private int age;
+//TODO mapowanie jsona- uzycie @json creator oraz @json property
 
     @JsonCreator
     public User(@JsonProperty ("firstName") String firstName,
-                @JsonProperty ("lastName") String lastName,
+                @JsonProperty (value = "lastName", defaultValue = "brak") String lastName,
                 @JsonProperty ("age") int age,
                 @JsonProperty ("phoneNumbers") List<PhoneNumber> phoneNumbers) {
         this.firstName = firstName;
