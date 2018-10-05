@@ -1,9 +1,10 @@
-package pl.sda.library;
+package pl.sda.library.infrastructure.json;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import pl.sda.library.domain.model.Book;
 
-public class Books {
+public class BooksDto {
     private String author;
     private String country;
     private  String language;
@@ -13,7 +14,7 @@ public class Books {
     private Integer year;
 
     @JsonCreator
-    public Books(
+    public BooksDto(
             @JsonProperty ("author") String author,
             @JsonProperty ("country") String country,
             @JsonProperty ("language") String language,
@@ -29,4 +30,15 @@ public class Books {
         this.title = title;
         this.year = year;
     }
+public Book mapToDomain(){
+    return Book.builder()
+            .author(author)
+            .country(country)
+            .language(language)
+            .link(link)
+            .pages(pages)
+            .title(title)
+            .year(year)
+            .build();
+}
 }
