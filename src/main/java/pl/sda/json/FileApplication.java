@@ -1,4 +1,4 @@
-package pl.sda.jsonAndFiles;
+package pl.sda.json;
 
 import java.io.File;
 import java.io.FileNotFoundException;
