@@ -34,6 +34,7 @@ public class ConsoleViews {
     public Integer showBooksMenu() {
         System.out.println("1. Znajdz po nazwie");
         System.out.println("2. Znajdz po autorze");
+        System.out.println("3. Znajdz po dacie wydania");
         System.out.println("0. Wyjdz");
         return getNumberFromUser();
     }
@@ -62,5 +63,10 @@ public class ConsoleViews {
     public String getBookAuthor() {
         System.out.println("Podaj autora");
        return scanner.nextLine();
+    }
+
+    public Integer getYear() {
+        System.out.println("Podaj rok wydania");
+        return scanner.nextInt();
     }
 }

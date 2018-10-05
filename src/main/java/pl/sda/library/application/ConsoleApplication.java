@@ -55,7 +55,11 @@ public class ConsoleApplication {
                List<Book> booksAuthor= booksService.findByAuthor(author);
                consoleViews.displayBooks(booksAuthor);
                break;
-
+            case 3:
+                Integer year= consoleViews.getYear();
+                List<Book> bookYear= booksService.findByYear(year);
+                consoleViews.displayBooks(bookYear);
+                break;
         }
     }
 }

@@ -24,7 +24,7 @@ public class BooksService {
         if (StringUtils.isBlank(title)) {
             return Collections.emptyList();
         }
-        Map<String, String> parameters = new HashMap<>();
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put("TITLE", title);
         return filterBook(parameters);
     }
@@ -33,14 +33,23 @@ public class BooksService {
         if (StringUtils.isBlank(author)) {
             return Collections.emptyList();
         }
-        Map<String, String> parameters = new HashMap<>();
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put("AUTHOR", author);
         return filterBook(parameters);
     }
 
-    private List<Book> filterBook(Map<String, String> filterParameters) {
+    private List<Book> filterBook(Map<String, Object> filterParameters) {
         return chain.filter(booksRepository.findAll(), filterParameters)
                 .collect(Collectors.toList()); //TODO zapisywanie streama do listy
 
+    }
+
+    public List<Book> findByYear(Integer year) {
+        if (year==null) {
+            return Collections.emptyList();
+        }
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("YEAR", year);
+        return filterBook(parameters);
     }
 }
