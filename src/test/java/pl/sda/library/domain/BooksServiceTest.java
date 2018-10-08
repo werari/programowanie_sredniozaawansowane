@@ -125,7 +125,7 @@ public class BooksServiceTest {
     }
 
     @Test
-    public void findByYearShouldReturnEmptyListForNonExistingYear() {
+    public void findByDateShouldReturnEmptyListForNonExistingDate() {
         //given
         Integer year = -1;
         //when
@@ -134,30 +134,20 @@ public class BooksServiceTest {
         Assert.assertEquals(0, books.size());
     }
 
-//    @Test
-//    public void findByYearShouldReturnEmptyListForEmptyYear() {
-//        //given
-//        Integer year = 0;
-//        //when
-//        List<Book> books = booksService.findByYear(year);
-//        //then
-//        Assert.assertEquals(0, books.size());
-//
-//    }
 
     @Test
-    public void findByYearShouldReturnItemsForExistingYear() {
+    public void findByDateShouldReturnItemsForExistingDate() {
         //given
         Integer year = 1952;
         //when
         List<Book> books = booksService.findByYear(year);
         //then
         Assert.assertEquals(1, books.size());
-        books.forEach(book -> Assert.assertTrue(book.getYear().equals(year)));
+        books.forEach(book -> Assert.assertEquals(book.getYear(),(year)));
     }
 
     @Test
-    public void findByYearShouldReturnEmptyListForNullYear() {
+    public void findByDateShouldReturnEmptyListForNullDate() {
         //given
         Integer year = null;
         //when

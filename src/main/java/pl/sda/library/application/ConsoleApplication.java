@@ -60,6 +60,8 @@ public class ConsoleApplication {
                 List<Book> bookYear= booksService.findByYear(year);
                 consoleViews.displayBooks(bookYear);
                 break;
+                default:
+                    System.out.println("Błąd");
         }
     }
 }
