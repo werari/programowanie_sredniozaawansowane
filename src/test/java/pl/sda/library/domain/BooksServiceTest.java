@@ -11,6 +11,7 @@ import pl.sda.library.domain.port.BooksRepository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 public class BooksServiceTest {
@@ -23,7 +24,7 @@ public class BooksServiceTest {
         this.booksRepository = Mockito.mock(BooksRepository.class);
         Mockito.when(booksRepository.findAll()).thenReturn(
                 Arrays.asList(
-                        Book.builder().title("Dziady III").author(" Adam Mickiewicz").year(1952).language("Polish").pages(150).build(),
+                        Book.builder().title("Dziady III").author("Adam Mickiewicz").year(1952).language("Polish").pages(150).build(),
                         Book.builder().title("Dziady IV").author("Adam Mickiewicz").year(1953).language("Polish").pages(151).build(),
                         Book.builder().title("W pustyni i w puszczy").author("Sienkiewicz").year(1946).language("Polish").pages(130).build()));
 
@@ -253,5 +254,13 @@ public class BooksServiceTest {
         Integer to= -50;
         //when
         List <Book> books=booksService.findByPagesRange(from, to);
+    }
+    @Test
+    public void getAuthorsShouldReturnAuthors(){
+        //when
+        Map<String, Long> authors = booksService.getAuthors();
+        //then
+        Assert.assertEquals(authors.get("Adam Mickiewicz"), new Long (2));
+        Assert.assertEquals(authors.get("Sienkiewicz"), new Long (1));
     }
 }

@@ -9,6 +9,7 @@ import pl.sda.library.infrastructure.json.JsonBooksRepository;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleApplication {
@@ -30,6 +31,7 @@ public class ConsoleApplication {
                     showBooks();
                     break;
                 case 2:
+                    showAuthors();
                     break;
                 case 0:
                     flag = false;
@@ -38,6 +40,11 @@ public class ConsoleApplication {
                     System.out.println("Bledna opcja");
             }
         }
+    }
+
+    private void showAuthors() {
+        Map<String, Long> authors=booksService.getAuthors();
+        consoleViews.displayAuthors(authors);
     }
 
     private void showBooks() {

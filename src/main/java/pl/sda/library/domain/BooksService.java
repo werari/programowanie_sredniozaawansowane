@@ -1,6 +1,7 @@
 package pl.sda.library.domain;
 
 import org.apache.commons.lang3.StringUtils;
+import org.omg.PortableInterceptor.ServerRequestInfo;
 import pl.sda.library.domain.exceptions.InvalidPagesValueException;
 import pl.sda.library.domain.filtering.BookFilteringChain;
 import pl.sda.library.domain.model.Book;
@@ -70,7 +71,19 @@ public class BooksService {
             throw new InvalidPagesValueException("Liczba stron nie moze byc ujemna");
         }
         if (from >to){
-            throw new InvalidPagesValueException("Liczba stron nie moze byc wiekśza niż total");
+            throw new InvalidPagesValueException("Liczba minimalna stron nie moze byc wieksza niż total");
         }
+    }
+
+    public Map<String, Long> getAuthors() {
+        List<Book> books = booksRepository.findAll();
+        return books.stream()
+                .map(e-> e.getAuthor())
+                .distinct()//remove duplicates
+                .collect(Collectors.toMap(
+                        author->author,
+                        author->books.stream()
+                                .filter(book-> author.equals(book.getAuthor()))
+                                .count()));
     }
 }
