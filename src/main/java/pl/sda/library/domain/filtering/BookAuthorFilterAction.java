@@ -26,8 +26,6 @@ public class BookAuthorFilterAction extends SimpleAbstractFilterAction {
 
     @Override
     protected Predicate<Book> predicate(Map<String, Object> parameters) {
-        return e-> StringUtils.containsIgnoreCase(e.getTitle(), (String)parameters.get("AUTHOR"));
+        return e-> StringUtils.containsIgnoreCase(e.getAuthor(), (String)parameters.get("AUTHOR"));
     }
-
-
 }

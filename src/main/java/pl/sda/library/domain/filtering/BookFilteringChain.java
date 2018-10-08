@@ -13,6 +13,8 @@ public class BookFilteringChain {
         this.chain.add(new BookAuthorFilterAction());
         this.chain.add(new BookTitleFilterAction());
         this.chain.add(new BookYearFilterAction());
+        this.chain.add(new BookLanguageFilterAction());
+        this.chain.add(new BookPagesFilterAction());
     }
 
     private List<FilterAction> chain;

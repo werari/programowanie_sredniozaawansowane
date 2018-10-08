@@ -35,6 +35,8 @@ public class ConsoleViews {
         System.out.println("1. Znajdz po nazwie");
         System.out.println("2. Znajdz po autorze");
         System.out.println("3. Znajdz po dacie wydania");
+        System.out.println("4. Znajdz po języku wydania");
+        System.out.println("5. Znajdzie po zakresie stron");
         System.out.println("0. Wyjdz");
         return getNumberFromUser();
     }
@@ -68,5 +70,26 @@ public class ConsoleViews {
     public Integer getYear() {
         System.out.println("Podaj rok wydania");
         return scanner.nextInt();
+    }
+
+    public String getLanguage() {
+        System.out.println("Podaj język");
+        return scanner.nextLine();
+    }
+
+
+    public Integer getFromPages() {
+        System.out.println("Podaj dolny zakres stron");
+        return getNumberFromUser();
+    }
+
+    public Integer getToPages() {
+        System.out.println("Podaj górny zakres stron");
+        return getNumberFromUser();
+    }
+
+    public void displayError(String message) {
+        System.out.println("ERROR"+ message);
+        waitForAction();
     }
 }
