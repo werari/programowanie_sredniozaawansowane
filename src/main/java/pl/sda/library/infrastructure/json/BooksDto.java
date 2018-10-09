@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import pl.sda.library.domain.model.Book;
 
+import java.time.Instant;
+
 public class BooksDto {
     private String author;
     private String country;
@@ -30,8 +32,9 @@ public class BooksDto {
         this.title = title;
         this.year = year;
     }
-public Book mapToDomain(){
+public Book mapToDomain(Integer id){
     return Book.builder()
+            .id(id.toString())
             .author(author)
             .country(country)
             .language(language)

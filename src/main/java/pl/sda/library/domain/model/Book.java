@@ -13,5 +13,6 @@ public class Book {
     private Integer pages;
     private String title;
     private Integer year;
+    private String id;
 
 }

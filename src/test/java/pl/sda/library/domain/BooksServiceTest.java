@@ -12,6 +12,7 @@ import pl.sda.library.domain.port.BooksRepository;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 public class BooksServiceTest {
@@ -24,9 +25,9 @@ public class BooksServiceTest {
         this.booksRepository = Mockito.mock(BooksRepository.class);
         Mockito.when(booksRepository.findAll()).thenReturn(
                 Arrays.asList(
-                        Book.builder().title("Dziady III").author("Adam Mickiewicz").year(1952).language("Polish").pages(150).build(),
-                        Book.builder().title("Dziady IV").author("Adam Mickiewicz").year(1953).language("Polish").pages(151).build(),
-                        Book.builder().title("W pustyni i w puszczy").author("Sienkiewicz").year(1946).language("Polish").pages(130).build()));
+                        Book.builder().title("Dziady III").author("Adam Mickiewicz").year(1952).language("Polish").pages(150).id("70").build(),
+                        Book.builder().title("Dziady IV").author("Adam Mickiewicz").year(1953).language("Polish").pages(151).id("100").build(),
+                        Book.builder().title("W pustyni i w puszczy").author("Sienkiewicz").year(1946).language("Polish").id("50").pages(130).build()));
 
 
         this.booksService = new BooksService(booksRepository);
@@ -262,5 +263,26 @@ public class BooksServiceTest {
         //then
         Assert.assertEquals(authors.get("Adam Mickiewicz"), new Long (2));
         Assert.assertEquals(authors.get("Sienkiewicz"), new Long (1));
+    }
+    @Test
+    public void findByIdShouldReturnBookForExistingId(){
+        //given
+        String bookId= "70";
+        //when
+        Optional<Book> books= booksService.findById(bookId);
+        //then
+        Assert.assertEquals(bookId, books.get().getId());
+        Assert.assertTrue(books.isPresent());
+
+    }
+    @Test
+    public void findByIdShouldNotReturnBookForNonExistingId(){
+        //given
+        String bookId= "500";
+        //when
+        Optional<Book> books= booksService.findById(bookId);
+        //then
+        //Assert.assertNotEquals(0, bookId);
+        Assert.assertFalse(books.isPresent());
     }
 }

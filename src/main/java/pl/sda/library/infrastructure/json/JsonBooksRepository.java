@@ -7,6 +7,7 @@ import pl.sda.library.domain.port.BooksRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,9 +26,12 @@ public class JsonBooksRepository implements BooksRepository {
         if (books == null) {
             instantiateBooks();
         }
-        return books.stream()
-                .map(book-> book.mapToDomain())
-                .collect(Collectors.toList());
+        List<Book> booksToReturn= new ArrayList<>();
+        for (int i = 0; i < books.size(); i++) {
+            BooksDto booksDto = books.get(i);
+            booksToReturn.add(booksDto.mapToDomain(i));
+        }
+        return booksToReturn;
     }
 
     private void instantiateBooks() {

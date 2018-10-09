@@ -2,10 +2,13 @@ package pl.sda.library.application;
 
 import org.assertj.core.internal.bytebuddy.description.field.FieldDescription;
 import pl.sda.library.domain.BooksService;
+import pl.sda.library.domain.BorrowService;
 import pl.sda.library.domain.exceptions.InvalidPagesValueException;
 import pl.sda.library.domain.model.Book;
+import pl.sda.library.domain.model.Borrow;
 import pl.sda.library.domain.port.BooksRepository;
 import pl.sda.library.infrastructure.json.JsonBooksRepository;
+import pl.sda.library.infrastructure.json.memory.InMemoryBorrowRepository;
 
 import java.io.File;
 import java.util.List;
@@ -15,11 +18,13 @@ import java.util.Scanner;
 public class ConsoleApplication {
     private ConsoleViews consoleViews;
     private BooksService booksService;
+    private BorrowService borrowService;
 
     public ConsoleApplication() {
         BooksRepository booksRepository = new JsonBooksRepository(new File("C:\\Users\\W\\IdeaProjects\\programowanie_sredniozaawansowane\\src\\main\\resources\\books.json"));
         this.consoleViews = new ConsoleViews(new Scanner(System.in));
         this.booksService = new BooksService(booksRepository);
+        this.borrowService=new BorrowService(booksService, new InMemoryBorrowRepository());
     }
 
     public void start() {
@@ -71,16 +76,28 @@ public class ConsoleApplication {
                 break;
             case 4:
                 //filter by language
-                String language= consoleViews.getLanguage();
-                List<Book> bookLanguage= booksService.findByLanguage(language);
+                String language = consoleViews.getLanguage();
+                List<Book> bookLanguage = booksService.findByLanguage(language);
                 consoleViews.displayBooks(bookLanguage);
                 break;
             case 5:
                 //filter by pages- with ranges
                 findByPagesRange();
                 break;
-            default:
-                System.out.println("Błąd");
+        }
+        if(option !=0){
+            borrow();
+        }
+    }
+
+    private void borrow() {
+        String id= consoleViews.getBookId();
+        String userName= consoleViews.getUserName();
+        Borrow borrow= borrowService.borrow(id, userName);
+        if(borrow != null){
+            consoleViews.borrowSuccess(borrow.getBook().getTitle());
+        }else{
+            consoleViews.borrowFailure();
         }
     }
 
