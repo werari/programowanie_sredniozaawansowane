@@ -1,4 +1,4 @@
-package pl.sda.library.infrastructure.json;
+package pl.sda.library.infrastructure.json.json;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

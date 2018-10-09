@@ -1,16 +1,16 @@
-package pl.sda.library.infrastructure.json;
+package pl.sda.library.infrastructure.json.json;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.sda.library.domain.model.Book;
 import pl.sda.library.domain.port.BooksRepository;
+import pl.sda.library.infrastructure.json.json.BooksDto;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonBooksRepository implements BooksRepository {
 

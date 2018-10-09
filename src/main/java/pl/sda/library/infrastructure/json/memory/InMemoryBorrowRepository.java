@@ -19,4 +19,9 @@ public class InMemoryBorrowRepository implements BorrowRepository {
     public void save(Borrow borrow) {
         borrowList.add(borrow);
     }
+
+    @Override
+    public List<Borrow> findAll() {
+        return  new ArrayList<>(borrowList);
+    }
 }

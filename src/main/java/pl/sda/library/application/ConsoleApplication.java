@@ -1,13 +1,13 @@
 package pl.sda.library.application;
 
-import org.assertj.core.internal.bytebuddy.description.field.FieldDescription;
 import pl.sda.library.domain.BooksService;
 import pl.sda.library.domain.BorrowService;
 import pl.sda.library.domain.exceptions.InvalidPagesValueException;
 import pl.sda.library.domain.model.Book;
 import pl.sda.library.domain.model.Borrow;
+import pl.sda.library.domain.model.BorrowStatus;
 import pl.sda.library.domain.port.BooksRepository;
-import pl.sda.library.infrastructure.json.JsonBooksRepository;
+import pl.sda.library.infrastructure.json.json.JsonBooksRepository;
 import pl.sda.library.infrastructure.json.memory.InMemoryBorrowRepository;
 
 import java.io.File;
@@ -38,6 +38,9 @@ public class ConsoleApplication {
                 case 2:
                     showAuthors();
                     break;
+                case 3:
+                    showBorrowed();
+                    break;
                 case 0:
                     flag = false;
                     break;
@@ -45,6 +48,12 @@ public class ConsoleApplication {
                     System.out.println("Bledna opcja");
             }
         }
+    }
+
+    private void showBorrowed() {
+        String userName = consoleViews.getUserName();
+        List<Borrow> borrowedByUser = borrowService.findByUserAndStatus(userName, BorrowStatus.BORROWED);
+        consoleViews.displayBorrowedBooks(borrowedByUser);
     }
 
     private void showAuthors() {
@@ -75,7 +84,7 @@ public class ConsoleApplication {
                 consoleViews.displayBooks(bookYear);
                 break;
             case 4:
-                //filter by language
+                //filter by languag
                 String language = consoleViews.getLanguage();
                 List<Book> bookLanguage = booksService.findByLanguage(language);
                 consoleViews.displayBooks(bookLanguage);
@@ -112,4 +121,5 @@ public class ConsoleApplication {
 
         }
     }
+
 }

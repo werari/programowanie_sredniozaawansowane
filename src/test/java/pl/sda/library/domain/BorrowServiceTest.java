@@ -3,16 +3,15 @@ package pl.sda.library.domain;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import pl.sda.library.domain.model.Book;
 import pl.sda.library.domain.model.Borrow;
 import pl.sda.library.domain.model.BorrowStatus;
 import pl.sda.library.domain.port.BorrowRepository;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BorrowServiceTest {
 
@@ -43,6 +42,28 @@ public class BorrowServiceTest {
         Assert.assertEquals(BorrowStatus.BORROWED, borrow.getBorrowStatus());
         Mockito.verify(borrowRepository, Mockito.times(1)).save(Mockito.any());
     }
-
+    @Test
+    public void findByUserAndStatusShouldReturnExistingUserAndBorrowedStatus(){
+        //given
+        String userName= "test-user";
+        BorrowStatus borrowStatus= BorrowStatus.BORROWED;
+        Mockito.when(borrowRepository.findAll()).thenReturn(
+                Arrays.asList(
+                        Borrow.builder().user("test-user").borrowStatus(BorrowStatus.BORROWED)
+                                .book(Book.builder().id("1").title("Dzieci z Bulerbyn").build()).build(),
+                        Borrow.builder().user("test-user").borrowStatus(BorrowStatus.BORROWED)
+                                .book(Book.builder().id("2").title("Dziady IV").build()).build(),
+                        Borrow.builder().user("admin-user").borrowStatus(BorrowStatus.BORROWED)
+                                .book(Book.builder().id("3").title("Folwark zwierzecy").build()).build(),
+                        Borrow.builder().user("test-user").borrowStatus(BorrowStatus.RETURNED)
+                                .book(Book.builder().id("4").title("W pustyni i w puszczy").build()).build()
+                )
+        );
+        //when
+        List<Borrow> borrows = borrowService.findByUserAndStatus(userName, borrowStatus);
+        //then
+        Assert.assertEquals(2, borrows.size());
+        borrows.forEach(e-> Assert.assertTrue(userName.equals(e.getUser()) && borrowStatus.equals(e.getBorrowStatus())));
+    }
 
 }
